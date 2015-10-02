@@ -5,7 +5,9 @@ using namespace std;
 
 int main()
 {
-    cout << "Hello World!" << endl;
+    SDL_Init(SDL_INIT_EVENTS | SDL_INIT_JOYSTICK);
+
+    SDL_Quit();
     return 0;
 }
 

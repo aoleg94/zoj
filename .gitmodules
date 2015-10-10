@@ -1,3 +1,0 @@
-[submodule "libsuinput"]
-	path = libsuinput
-	url = https://github.com/tuomasjjrasanen/libsuinput.git

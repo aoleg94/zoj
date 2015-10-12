@@ -36,6 +36,7 @@ public:
     void injectMouseAbsolute(float x, float y);
     void injectKey(char c, bool up);
     void injectKey(SpecialKey sk, bool up);
+    void getMousePosition(float* x, float* y);
     void update();
 };
 

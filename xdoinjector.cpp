@@ -74,10 +74,31 @@ void XdoInjector::injectKey(SpecialKey sk, bool up)
         xdo_send_keysequence_window_down(xdo, global ? CURRENTWINDOW : selectedWindow, s, 0);
 }
 
+void XdoInjector::getMousePosition(float *x, float *y)
+{
+    int ix, iy;
+    int screen = 0;
+    xdo_get_mouse_location(xdo, &ix, &iy, &screen);
+    if(!global)
+    {
+        int wx, wy;
+        xdo_get_window_location(xdo, selectedWindow, &wx, &wy, nullptr);
+        ix -= wx;
+        iy -= wy;
+    }
+    *x = (2*ix-width)/(float)width;
+    *y = (2*iy-height)/(float)height;
+}
+
 void XdoInjector::update()
 {
     if(global)
-        xdo_get_desktop_viewport(xdo, (int*)&width, (int*)&height);
+    {
+        int ix, iy;
+        int screen = 0;
+        xdo_get_mouse_location(xdo, &ix, &iy, &screen);
+        xdo_get_viewport_dimensions(xdo, &width, &height, screen);
+    }
     else
         xdo_get_window_size(xdo, selectedWindow, &width, &height);
 }
